@@ -18,7 +18,8 @@ namespace Game10003
         /// </summary>
         public void Setup()
         {
-
+            Window.SetTitle("Asteroids");
+            Window.SetSize(600, 600);
         }
 
         /// <summary>
@@ -26,7 +27,7 @@ namespace Game10003
         /// </summary>
         public void Update()
         {
-
+            Window.ClearBackground(Color.Black);
         }
     }
 }
