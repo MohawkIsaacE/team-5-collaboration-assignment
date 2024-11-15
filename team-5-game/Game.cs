@@ -11,7 +11,7 @@ namespace Game10003
     public class Game
     {
         // Place your variables here:
-        Enemy[] enemy = new Enemy[5];
+        Enemy[] enemy = new Enemy[1];
 
         /// <summary>
         ///     Setup runs once before the game loop begins.
@@ -51,6 +51,7 @@ namespace Game10003
         {
             for (int i = 0; i < enemy.Length; i++)
             {
+                enemy[i].speed = 200;
                 enemy[i].Spawn();
             }
         }
