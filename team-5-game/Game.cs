@@ -11,7 +11,7 @@ namespace Game10003
     public class Game
     {
         // Place your variables here:
-        Enemy enemy = new Enemy();
+        Enemy[] enemy = new Enemy[5];
 
         /// <summary>
         ///     Setup runs once before the game loop begins.
@@ -21,7 +21,11 @@ namespace Game10003
             Window.SetTitle("Asteroids");
             Window.SetSize(600, 600);
 
-            enemy.Spawn();
+            for (int i = 0; i < enemy.Length; i++)
+            {
+                enemy[i] = new Enemy();
+            }
+            SpawnEnemies();
         }
 
         /// <summary>
@@ -33,11 +37,22 @@ namespace Game10003
 
             if (Input.IsKeyboardKeyPressed(KeyboardInput.G))
             {
-                enemy.Spawn();
+                SpawnEnemies();
             }
 
-            enemy.Move();
-            enemy.Render();
+            for (int i = 0; i < enemy.Length; i++)
+            {
+                enemy[i].Move();
+                enemy[i].Render();
+            }
+        }
+
+        public void SpawnEnemies()
+        {
+            for (int i = 0; i < enemy.Length; i++)
+            {
+                enemy[i].Spawn();
+            }
         }
     }
 }

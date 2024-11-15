@@ -37,20 +37,20 @@ namespace Game10003
             */
             if (direction.X >= 0 && direction.Y >= 0)
             {
-                if (randomSide == 0) position = new Vector2(Random.Float(-size, Window.Width / 2), 0);
-                else position = new Vector2(0, Random.Float(-size, Window.Height / 2));
+                if (randomSide == 0) position = new Vector2(Random.Float(-size * 2, Window.Width / 2), 0);
+                else position = new Vector2(0, Random.Float(-size * 2, Window.Height / 2));
                 Console.WriteLine("here1");
             }
             else if (direction.X >= 0 && direction.Y < 0)
             {
-                if (randomSide == 0) position = new Vector2(Random.Float(-size, Window.Width - size), Window.Height + size);
-                else position = new Vector2(-size, Random.Float(Window.Height - size, -size));
+                if (randomSide == 0) position = new Vector2(Random.Float(-size * 2, Window.Width - size), Window.Height + size);
+                else position = new Vector2(-size, Random.Float(Window.Height - size, -size * 2));
                 Console.WriteLine("here2");
             }
             else if (direction.X < 0 && direction.Y >= 0)
             {
-                if (randomSide == 0) position = new Vector2(Random.Float(Window.Width / 2, Window.Width + size), 0);
-                else position = new Vector2(Window.Width + size, Random.Float(-size, Window.Height / 2));
+                if (randomSide == 0) position = new Vector2(Random.Float(Window.Width / 2, Window.Width + size), size * 2);
+                else position = new Vector2(Window.Width + size, Random.Float(-size * 2, Window.Height / 2));
                 Console.WriteLine("here3");
             }
             else if (direction.X < 0 && direction.Y < 0)
