@@ -10,8 +10,10 @@ namespace Game10003
         Vector2 position;
         Vector2 direction;
         public float speed;
-        float size;
-        bool isActive;
+        float size = 20;
+        public bool isActive;
+        bool isOffScreenBool;
+
         Color color = Color.OffWhite; // If no image
         Image image; // If no colour
 
@@ -26,9 +28,14 @@ namespace Game10003
             // Create a random direction for the enemy to move
             direction = Random.Direction();
             CalculateMoveDirection();
+            UpdateCollision();
+
+            // Reset the offscreen detection and speed
+            isActive = true;
+            speed = 200;
             
             // Randomize the enemy size
-            size = Random.Float(15, 41);
+            //size = Random.Float(15, 41);
 
             // Randomize where the enemy should start from
             int randomSide = Random.Integer(1, 3);
@@ -44,28 +51,27 @@ namespace Game10003
             {
                 if (randomSide == 0) position = new Vector2(Random.Float(-size * 2, Window.Width / 2), 0);
                 else position = new Vector2(0, Random.Float(-size * 2, Window.Height / 2));
-                Console.WriteLine("isGoingDownRight");
             }
             else if (isGoingUpRight)
             {
                 if (randomSide == 0) position = new Vector2(Random.Float(-size * 2, Window.Width - size), Window.Height + size);
                 else position = new Vector2(-size, Random.Float(Window.Height - size, -size * 2));
-                Console.WriteLine("isGoingUpRight");
             }
             else if (isGoingDownLeft)
             {
                 if (randomSide == 0) position = new Vector2(Random.Float(Window.Width / 2, Window.Width + size), size * 2);
                 else position = new Vector2(Window.Width + size, Random.Float(-size * 2, Window.Height / 2));
-                Console.WriteLine("isGoingDownLeft");
             }
             else if (isGoingUpLeft)
             {
                 if (randomSide == 0) position = new Vector2(Random.Float(Window.Width / 2, Window.Width + size), Window.Height + size);
                 else position = new Vector2(Window.Width + size, Random.Float(Window.Height / 2, Window.Height + size));
-                Console.WriteLine("isGoingUpLeft");
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void CalculateMoveDirection()
         {
             isGoingDownRight = direction.X >= 0 && direction.Y >= 0;
@@ -80,10 +86,7 @@ namespace Game10003
         public void Move()
         {
             position += Vector2.Normalize(direction) * speed * Time.DeltaTime;
-            if (isOffScreen())
-            {
-                Spawn();
-            }
+            UpdateCollision();
             //Console.WriteLine($"{position.X}x {position.Y}y");
         }
 
@@ -99,44 +102,37 @@ namespace Game10003
         /// <summary>
         ///     Uses window collision to check if the enemy is off the screen
         /// </summary>
-        /// <returns></returns>
-        private bool isOffScreen()
+        public bool IsOffScreen()
         {
-            bool isOffScreen = false;
-
             if (isGoingDownRight)
             {
-                if (position.X > Window.Width || position.Y > Window.Height)
+                if (leftSide > Window.Width || topSide > Window.Height)
                 {
-                    isOffScreen = true;
-                    Console.WriteLine("offScreenRightOrBottom");
+                    isOffScreenBool = true;
                 }
             }
             else if (isGoingUpRight)
             {
-                if (position.X > Window.Width || position.Y < 0)
+                if (leftSide > Window.Width || bottomSide < 0)
                 {
-                    isOffScreen = true;
-                    Console.WriteLine("offScreenRightOrTop");
+                    isOffScreenBool = true;
                 }
             }
             else if (isGoingDownLeft)
             {
-                if (position.X < 0 || position.Y > Window.Height)
+                if (rightSide < 0 || topSide > Window.Height)
                 {
-                    isOffScreen = true;
-                    Console.WriteLine("offScreenLeftOrBottom");
+                    isOffScreenBool = true;
                 }
             }
             else if (isGoingUpLeft)
             {
-                if (position.X < 0 || position.Y < 0)
+                if (rightSide < 0 || bottomSide < 0)
                 {
-                    isOffScreen = true;
-                    Console.WriteLine("offScreenLeftOrTop");
+                    isOffScreenBool = true;
                 }
             }
-            return isOffScreen;
+            return isOffScreenBool;
         }
 
         /// <summary>
@@ -149,6 +145,24 @@ namespace Game10003
             rightSide = position.X + size;
             topSide = position.Y;
             bottomSide = position.Y + size;
+        }
+
+        /// <summary>
+        ///     Allows the setting of a new direction
+        /// </summary>
+        /// <param name="newDirection"></param>
+        public void SetDirection(Vector2 newDirection)
+        {
+            direction = newDirection;
+        }
+
+        /// <summary>
+        ///     Allows the setting of the isOffScreenBool boolean
+        /// </summary>
+        /// <param name="newBool"></param>
+        public void SetOffScreen(bool newBool)
+        {
+            isOffScreenBool = newBool;
         }
     }
 }
