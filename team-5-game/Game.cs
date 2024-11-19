@@ -16,6 +16,8 @@ namespace Game10003
         int numOfActiveEnemies;
         int spawnChance;
 
+        Sprites sprite = new Sprites();
+
         /// <summary>
         ///     Setup runs once before the game loop begins.
         /// </summary>
@@ -23,6 +25,10 @@ namespace Game10003
         {
             Window.SetTitle("Asteroids");
             Window.SetSize(600, 600);
+
+            sprite.playerPosition = new Vector2(10, 10);
+            sprite.asteroidPosition = new Vector2(100, 100);
+            sprite.bgPosition = new Vector2(0, 0);
 
             // Initializes the enemies
             for (int i = 0; i < enemies.Length; i++)
@@ -38,10 +44,6 @@ namespace Game10003
         /// </summary>
         public void Update()
         {
-            sprite.DrawBackground();
-            sprite.DrawPlayer();
-            sprite.DrawAsteroid();
-            
             Window.ClearBackground(Color.Black);
 
             // Handles the spawning of random enemies so they don't all spawn at once
@@ -71,7 +73,7 @@ namespace Game10003
                     numOfActiveEnemies--;
                 }
 
-                enemies[i].Render();
+                sprite.DrawAsteroid(enemies[i].position);
             }
         }
     }

@@ -16,10 +16,10 @@ namespace Game10003
         public Texture2D asteroid = Graphics.LoadTexture("../../../../Assets/GameAsteroid.png");
         public Texture2D background = Graphics.LoadTexture("../../../../Assets/GameBackground.png");
 
-        public void DrawAsteroid()
+        public void DrawAsteroid(Vector2 pos)
         {
             Graphics.Scale = 0.1f;
-            Graphics.Draw(asteroid, asteroidPosition);
+            Graphics.Draw(asteroid, pos);
         }
 
         public void DrawPlayer()
