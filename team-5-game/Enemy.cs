@@ -10,7 +10,7 @@ namespace Game10003
         public Vector2 position;
         Vector2 direction;
         public float speed;
-        public float size = 20;
+        public float size = 40;
         public bool isActive;
         bool isOffScreenBool;
 

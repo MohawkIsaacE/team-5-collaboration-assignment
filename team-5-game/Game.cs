@@ -24,13 +24,13 @@ namespace Game10003
             Window.SetTitle("Asteroids");
             Window.SetSize(600, 600);
 
+            // Initializes the enemies
             for (int i = 0; i < enemies.Length; i++)
             {
                 enemies[i] = new Enemy();
             }
             numOfActiveEnemies = 0;
             spawnChance = 10;
-            //SpawnEnemies();
         }
 
         /// <summary>
@@ -66,6 +66,7 @@ namespace Game10003
                     enemies[i].isActive = false;
                     numOfActiveEnemies--;
                 }
+
                 enemies[i].Render();
             }
         }
