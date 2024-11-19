@@ -12,6 +12,7 @@ namespace Game10003
     {
         // Place your variables here:
         Enemy[] enemies = new Enemy[10];
+        Collision collisionChecker = new Collision();
         int numOfActiveEnemies;
         int spawnChance;
 
@@ -48,7 +49,6 @@ namespace Game10003
                 {
                     enemies[randomEnemyNumber].Spawn();
                     numOfActiveEnemies++;
-                    Console.WriteLine(numOfActiveEnemies);
                 }
             }
 
@@ -65,7 +65,6 @@ namespace Game10003
                     enemies[i].SetOffScreen(false);
                     enemies[i].isActive = false;
                     numOfActiveEnemies--;
-                    Console.WriteLine(numOfActiveEnemies);
                 }
                 enemies[i].Render();
             }

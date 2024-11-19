@@ -7,10 +7,10 @@ namespace Game10003
     public class Enemy
     {
         // Variables
-        Vector2 position;
+        public Vector2 position;
         Vector2 direction;
         public float speed;
-        float size = 20;
+        public float size = 20;
         public bool isActive;
         bool isOffScreenBool;
 
