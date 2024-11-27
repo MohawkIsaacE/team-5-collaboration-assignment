@@ -7,18 +7,15 @@ namespace Game10003
     {
         //variables:
         Vector2 input = Vector2.Zero;
-        Vector2 playerPosition = new Vector2(200, 200);
-        Vector2 BulletPosition;
+        public Vector2 playerPosition = new Vector2(200, 200);
+        public Vector2 BulletPosition;
         bool isShootPressed = false;
         bool isBulletActive = false;
         float BulletSpeed = 800;
         Vector2 bulletDirection;
-        
-        public void Update()
+
+        public void UpdatePlayer()
         {
-            
-
-
             input = Vector2.Zero;
 
             // Player movement
@@ -39,15 +36,7 @@ namespace Game10003
             float mouseLineY = Input.GetMouseY();
 
             DrawPlayer();
-            //Draw the player
-            void DrawPlayer()
-            {
-                Draw.LineSize = 2;
-                Draw.LineColor = Color.Red;
-                Draw.FillColor = Color.Blue;
-                Draw.Square(playerPosition, 20);
 
-            }
             // Calculate the direction from the player to the mouse cursor
             Vector2 directionToMouse = new Vector2(mouseLineX, mouseLineY) - playerPosition;
 
@@ -106,6 +95,15 @@ namespace Game10003
                 isBulletActive = false;
                 isShootPressed = false; // Reset shooting flag after the bullet disappears
             }
+        }
+
+        //Draw the player
+        public void DrawPlayer()
+        {
+            Draw.LineSize = 2;
+            Draw.LineColor = Color.Red;
+            Draw.FillColor = Color.Blue;
+            Draw.Square(playerPosition, 20);
         }
     }
 }
