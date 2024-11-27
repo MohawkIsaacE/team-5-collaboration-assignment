@@ -16,6 +16,8 @@ namespace Game10003
         int numOfActiveEnemies;
         int spawnChance;
 
+        Player player = new Player();
+
         Sprites sprite = new Sprites();
 
         /// <summary>
@@ -75,6 +77,8 @@ namespace Game10003
 
                 sprite.DrawAsteroid(enemies[i].position);
             }
+
+            player.UpdatePlayer();
         }
     }
 }
