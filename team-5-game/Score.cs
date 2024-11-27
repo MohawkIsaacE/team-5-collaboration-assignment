@@ -7,13 +7,12 @@ namespace Game10003
     {
         int scoreNumber;
         string scoreText;
-        Vector2 position;
+        public Vector2 position;
 
         public Score()
         {
             scoreNumber = 0;
             scoreText = "Score: ";
-            position = new Vector2(0, Window.Height - 20);
         }
 
         public void DisplayScore()

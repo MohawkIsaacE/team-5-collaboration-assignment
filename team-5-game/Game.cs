@@ -41,6 +41,7 @@ namespace Game10003
             }
             numOfActiveEnemies = 0;
             spawnChance = 10;
+            score.position = new Vector2(5, Window.Height - 25);
         }
 
         /// <summary>
@@ -76,17 +77,20 @@ namespace Game10003
                 // Detects if the bullet has collided with the enemy
                 if (collisionChecker.IsPointInRectangle(player.BulletPosition, enemies[i].position, enemies[i].size, enemies[i].size))
                 {
-                    
+                    score.AddScore(20); // Gain points for destroying the enemy
+                    enemyHasBeenHit = true;
                 }
-                // Detects if the enemy has collided into the player
+                // Detects if the player has collided with the enemy
                 else if (collisionChecker.IsRectangleInRectangle(player.playerPosition, 20, 20, enemies[i].position, enemies[i].size, enemies[i].size)) 
                 {
-                    
+                    score.RemoveScore(50); // Lose points for being hit
+                    enemyHasBeenHit = true;
                 }
                 // Detects if the enemy has gone off screen
                 else if (enemies[i].IsOffScreen()) 
                 {
-                    
+                    score.AddScore(5); // Gain points for dodging the enemy
+                    enemyHasBeenHit= true;
                 }
 
                 // Destroy enemy if it has been hit or gone off screen this frame
@@ -100,6 +104,9 @@ namespace Game10003
 
                 sprite.DrawAsteroid(enemies[i].position);
             }
+
+            // Display the score to the screen
+            score.DisplayScore();
         }
     }
 }

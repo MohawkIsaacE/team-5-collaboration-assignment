@@ -7,7 +7,7 @@ namespace Game10003
     {
         //variables:
         Vector2 input = Vector2.Zero;
-        public Vector2 playerPosition = new Vector2(200, 200);
+        public Vector2 playerPosition = new Vector2(290, 290);
         public Vector2 BulletPosition;
         bool isShootPressed = false;
         bool isBulletActive = false;
