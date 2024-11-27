@@ -7,8 +7,13 @@ namespace Game10003
     public class Collision
     {
         /// <summary>
-        ///     Detects if a point is within a rectangle
+        ///     Detects when a point is within the bounds of a rectangle
         /// </summary>
+        /// <param name="pointPosition">Position of the point</param>
+        /// <param name="shape">Position of the rectangle</param>
+        /// <param name="width">Width of the rectangle</param>
+        /// <param name="height">Height of the rectangle</param>
+        /// <returns></returns>
         public bool IsPointInRectangle(Vector2 pointPosition, Vector2 shape, float width, float height)
         {
             float shapeLeftSide, shapeRightSide, shapeTopSide, shapeBottomSide;

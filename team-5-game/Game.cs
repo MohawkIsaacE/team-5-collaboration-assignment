@@ -48,6 +48,8 @@ namespace Game10003
         {
             Window.ClearBackground(Color.Black);
 
+            player.UpdatePlayer();
+
             // Handles the spawning of random enemies so they don't all spawn at once
             if (numOfActiveEnemies <= 10)
             {
@@ -65,9 +67,16 @@ namespace Game10003
             {
                 enemies[i].Move();
 
-                // Update the max amount of enemies on screen when one goes off screen
-                // Also stops the offscreen enemy from moving
-                if (enemies[i].IsOffScreen())
+                // Update the max amount of enemies on screen when one goes off screen or is destroyed
+                // Also stops the enemy from moving
+                if (collisionChecker.IsPointInRectangle(player.BulletPosition, enemies[i].position, enemies[i].size, enemies[i].size))
+                {
+                    enemies[i].SetDirection(Vector2.Zero);
+                    enemies[i].SetOffScreen(false);
+                    enemies[i].isActive = false;
+                    numOfActiveEnemies--;
+                }
+                else if (enemies[i].IsOffScreen())
                 {
                     enemies[i].SetDirection(Vector2.Zero);
                     enemies[i].SetOffScreen(false);
@@ -77,8 +86,6 @@ namespace Game10003
 
                 sprite.DrawAsteroid(enemies[i].position);
             }
-
-            player.UpdatePlayer();
         }
     }
 }
