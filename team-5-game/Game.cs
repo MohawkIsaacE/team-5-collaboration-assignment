@@ -13,6 +13,7 @@ namespace Game10003
         // Place your variables here:
         Enemy[] enemies = new Enemy[10];
         Collision collisionChecker = new Collision();
+        Score score = new Score();
         int numOfActiveEnemies;
         int spawnChance;
 
