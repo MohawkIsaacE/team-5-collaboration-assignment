@@ -16,6 +16,7 @@ namespace Game10003
         Score score = new Score();
         int numOfActiveEnemies;
         int spawnChance;
+        bool enemyHasBeenHit;
 
         Player player = new Player();
 
@@ -67,17 +68,29 @@ namespace Game10003
             for (int i = 0; i < enemies.Length; i++)
             {
                 enemies[i].Move();
-
-                // Update the max amount of enemies on screen when one goes off screen or is destroyed
-                // Also stops the enemy from moving
+                enemyHasBeenHit = false;
+                /*
+                 * Update the max amount of enemies on screen when one goes off screen or is destroyed
+                 * Also stops the enemy from moving
+                 */
+                // Detects if the bullet has collided with the enemy
                 if (collisionChecker.IsPointInRectangle(player.BulletPosition, enemies[i].position, enemies[i].size, enemies[i].size))
                 {
-                    enemies[i].SetDirection(Vector2.Zero);
-                    enemies[i].SetOffScreen(false);
-                    enemies[i].isActive = false;
-                    numOfActiveEnemies--;
+                    
                 }
-                else if (enemies[i].IsOffScreen())
+                // Detects if the enemy has collided into the player
+                else if (collisionChecker.IsRectangleInRectangle(player.playerPosition, 20, 20, enemies[i].position, enemies[i].size, enemies[i].size)) 
+                {
+                    
+                }
+                // Detects if the enemy has gone off screen
+                else if (enemies[i].IsOffScreen()) 
+                {
+                    
+                }
+
+                // Destroy enemy if it has been hit or gone off screen this frame
+                if (enemyHasBeenHit)
                 {
                     enemies[i].SetDirection(Vector2.Zero);
                     enemies[i].SetOffScreen(false);

@@ -13,6 +13,7 @@ namespace Game10003
         public float size = 40;
         public bool isActive;
         bool isOffScreenBool;
+        public bool hasTouchedPlayer;
 
         Color color = Color.OffWhite; // If no image
         Image image; // If no colour
@@ -30,9 +31,10 @@ namespace Game10003
             CalculateMoveDirection();
             UpdateCollision();
 
-            // Reset the offscreen detection and speed
+            // Reset the offscreen detection, speed, and touch check
             isActive = true;
             speed = 200;
+            hasTouchedPlayer = false;
             
             // Randomize the enemy size
             //size = Random.Float(15, 41);
