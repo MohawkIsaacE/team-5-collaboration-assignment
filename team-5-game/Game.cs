@@ -30,7 +30,6 @@ namespace Game10003
             Window.SetTitle("Asteroids");
             Window.SetSize(600, 600);
 
-            sprite.playerPosition = new Vector2(10, 10);
             sprite.asteroidPosition = new Vector2(100, 100);
             sprite.bgPosition = new Vector2(0, 0);
 
@@ -52,6 +51,7 @@ namespace Game10003
             Window.ClearBackground(Color.Black);
 
             player.UpdatePlayer();
+            sprite.playerPosition = new Vector2(player.playerPosition.X - 10, player.playerPosition.Y - 10);
 
             // Handles the spawning of random enemies so they don't all spawn at once
             if (numOfActiveEnemies <= 10)
@@ -103,6 +103,7 @@ namespace Game10003
                 }
 
                 sprite.DrawAsteroid(enemies[i].position);
+                sprite.DrawPlayer();
             }
 
             // Display the score to the screen
