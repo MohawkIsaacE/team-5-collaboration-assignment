@@ -51,6 +51,7 @@ namespace Game10003
             Window.ClearBackground(Color.Black);
 
             player.UpdatePlayer();
+
             sprite.playerPosition = new Vector2(player.playerPosition.X - 10, player.playerPosition.Y - 10);
 
             // Handles the spawning of random enemies so they don't all spawn at once
@@ -102,6 +103,7 @@ namespace Game10003
                     numOfActiveEnemies--;
                 }
 
+                // Draw Asteroid and Player
                 sprite.DrawAsteroid(enemies[i].position);
                 sprite.DrawPlayer();
             }
